@@ -1,0 +1,50 @@
+﻿@model ESAD_CS_R72_M_06_MVC_D010.Models.ViewModels.EmployeeVM
+@{
+    ViewBag.Title = "Create";
+}
+
+<div>
+    @using (Html.BeginForm("Create", "Employees",FormMethod.Post, htmlAttributes: new {encType= "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-6">
+                <h1 class="display-6 alert alert-success" >Employee Information </h1>
+                <div class="row">
+                    <div class="d-flex gap-4 mb-3">
+                        @Html.LabelFor(x => x.EmployeeName, new { @class = "col-3 form-label text-end" })
+                        @Html.TextBoxFor(x => x.EmployeeName, new { @class = "col-6 form form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(x => x.EmployeeName, "", new {@class="col-3"})
+                </div>
+                <div class="row">
+                    <div class="d-flex gap-4 mb-3">
+                        @Html.LabelFor(x => x.JoinDate, new { @class = "col-3 form-label text-end" })
+                        @Html.TextBoxFor(x => x.JoinDate, new { @class = "col-6 form form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(x => x.JoinDate, "", new {@class="col-3"})
+                </div>
+                <div class="row">
+                    <div class="d-flex gap-4 mb-3">
+                        @Html.LabelFor(x => x.Salary, new { @class = "col-3 form-label text-end" })
+                        @Html.TextBoxFor(x => x.Salary, new { @class = "col-6 form form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Salary, "", new {@class="col-3"})
+                </div>
+                <div class="row">
+                    <div class="d-flex gap-4 mb-3">
+                        @Html.LabelFor(x => x.Picture, new { @class = "col-3 form-label text-end" })
+                        @Html.TextBoxFor(x => x.Picture, new { @class = "col-6 form form-control", type="file"})
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Picture, "", new {@class="col-3"})
+                </div>
+                
+            </div>
+            <div class="col-6">
+                <h1 class="display-6 alert alert-success">Employee Qualifications </h1>
+
+            </div>
+        </div>
+    }
+
+</div>
+
