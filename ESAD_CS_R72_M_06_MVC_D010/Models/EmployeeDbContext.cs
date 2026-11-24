@@ -8,8 +8,8 @@ namespace ESAD_CS_R72_M_06_MVC_D010.Models
 {
     public class EmployeeDbContext: DbContext
     {
-        DbSet<Employee> Employees { get; set; }
-        DbSet<Qualification> Qualifications { get; set; }
-        DbSet<EmployeeQualification> EmployeeQualifications { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Qualification> Qualifications { get; set; }
+        public DbSet<EmployeeQualification> EmployeeQualifications { get; set; }
     }
 }

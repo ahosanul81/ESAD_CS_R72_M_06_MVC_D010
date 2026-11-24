@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ESAD_CS_R72_M_06_MVC_D010.Models.Employee>
 @{
     ViewBag.Title = "Index";
 }
@@ -6,9 +6,50 @@
 <div class="row">
     <div class="col">
         <h2 class="display-4">Employee List</h2>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end mb-4">
             <a href="@Url.Action("Create","Employees")" class="btn btn-success btn-sm">Add New Employee</a>
         </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="mb-3 p-3 border border-2 border-success rounded-3 ">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="@item.Picture" width="175" height="175" class="rounded-3" />
+                    </div>
+                    <div class="col-8">
+                        <div class="justify-content-between">
+                            <label> <strong>@Html.DisplayNameFor(x => x.EmployeeName) :</strong> @Html.DisplayFor(x => item.EmployeeName)</label><br />
+                            <label> <strong>@Html.DisplayNameFor(x => x.JoinDate) :</strong> @Html.DisplayFor(x => item.JoinDate)</label><br />
+                            <label> <strong>@Html.DisplayNameFor(x => x.Salary) :</strong> @Html.DisplayFor(x => item.Salary)</label><br />
+                            <label> <strong>@Html.DisplayNameFor(x => x.IsActive) :</strong> @Html.DisplayFor(x => item.IsActive)</label><br />
+
+                            <table class="table table-bordered table-striped table-sm">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Qualification Id</th>
+                                        <th>Qualification Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var q in item.EmployeeQualifications)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(x => q.Qualification.QualificationId)</td>
+                                            <td>@Html.DisplayFor(x => q.Qualification.QualificationName)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="mt-3 d-flex justify-content-end">
+                                <a href="@Url.Action("Edit", "Employees", new {id=item.EmployeeId})" class="btn btn-primary btn-sm"> Edit</a>&nbsp;
+                                <a href="@Url.Action("Delete", "Employees", new {id=item.EmployeeId})" class="btn btn-danger btn-sm"> Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>
 

@@ -188,6 +188,10 @@
     <Compile Include="Migrations\Employee\202611231756596_ScriptEmployee.Designer.cs">
       <DependentUpon>202611231756596_ScriptEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Employee\202611241938249_ScriptEmployee1.cs" />
+    <Compile Include="Migrations\Employee\202611241938249_ScriptEmployee1.Designer.cs">
+      <DependentUpon>202611241938249_ScriptEmployee1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Employee\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -281,9 +285,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\_AddNewQualification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
     <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\Employee\202611231756596_ScriptEmployee.resx">
       <DependentUpon>202611231756596_ScriptEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\Employee\202611241938249_ScriptEmployee1.resx">
+      <DependentUpon>202611241938249_ScriptEmployee1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

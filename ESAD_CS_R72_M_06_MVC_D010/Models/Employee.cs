@@ -20,7 +20,7 @@ namespace ESAD_CS_R72_M_06_MVC_D010.Models
         [Required, Column(TypeName = "Money")]
         public decimal Salary { get; set; }
         public string Picture { get; set; }
-        public decimal IsActive { get; set; }
+        public bool IsActive { get; set; }
 
 
         public virtual ICollection<EmployeeQualification> EmployeeQualifications { get; set; } = new List<EmployeeQualification>();
