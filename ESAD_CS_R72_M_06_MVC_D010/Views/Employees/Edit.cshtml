@@ -1,0 +1,121 @@
+﻿@model ESAD_CS_R72_M_06_MVC_D010.Models.ViewModels.EmployeeVM
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div>
+    @using (Html.BeginForm("Edit", "Employees", FormMethod.Post, htmlAttributes: new { encType = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken() 
+        @Html.HiddenFor(x => x.EmployeeId)
+        @Html.HiddenFor(x => x.Picture)
+        <div class="row">
+            <div class="col-6">
+                <h1 class="display-6 alert alert-success">Employee Information </h1>
+                <div class="row">
+                    <div class="d-flex gap-4 mb-3">
+                        @Html.LabelFor(x => x.EmployeeName, new { @class = "col-3 form-label text-end" })
+                        @Html.TextBoxFor(x => x.EmployeeName, new { @class = "col-6 form form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(x => x.EmployeeName, "", new { @class = "col-3" })
+                </div>
+                <div class="row">
+                    <div class="d-flex gap-4 mb-3">
+                        @Html.LabelFor(x => x.JoinDate, new { @class = "col-3 form-label text-end" })
+                        @Html.TextBoxFor(x => x.JoinDate, "{0:yyyy-MM-dd}", new { @class = "col-6 form form-control", type = "date" })
+                    </div>
+                    @Html.ValidationMessageFor(x => x.JoinDate, "", new { @class = "col-3" })
+                </div>
+                <div class="row">
+                    <div class="d-flex gap-4 mb-3">
+                        @Html.LabelFor(x => x.Salary, new { @class = "col-3 form-label text-end" })
+                        @Html.TextBoxFor(x => x.Salary, new { @class = "col-6 form form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(x => x.Salary, "", new { @class = "col-3" })
+                </div>
+                <div class="row">
+                    <div class="d-flex gap-4 mb-3">
+                        @Html.LabelFor(x => x.PicturePath, new { @class = "col-3 form-label text-end" })
+                        <div class="col-6 d-flex">
+                            @Html.TextBoxFor(x => x.PicturePath, new { @class = "form form-control", type = "file" })
+                            <img src="@Url.Content(Model.Picture)" height="35" width="35" />
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(x => x.PicturePath, "", new { @class = "col-3" })
+                </div>
+                <div class="row mb-2">
+                    <div class="col-9 offset-3">
+                        <button type="reset" class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i> Reset</button>
+                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save"></i> Update to database</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <h1 class="display-6 alert alert-success">Employee Qualifications </h1>
+                <div class="d-flex justify-content-end">
+                    <a href="#" id="btnPlus" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add </a>
+                </div>
+                <div id="qualificationContainer">
+                    @*@Html.Action("AddNewQualification", "Employees")*@
+                    @foreach (var item in Model.QualificationList)
+                    {
+                        @Html.Action("AddNewQualification", "Employees", new { id = item })
+
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnPlus').click(function(e) {
+                var qualificationContr = $('#qualificationContainer');
+                $.ajax({
+                    url: "/Employees/AddNewQualification",
+                    type: "GET",
+                    success: function (data) {
+                        qualificationContr.append(data)
+                    }
+                })
+            })
+            $(document).on('click', "#btnDeleteQualification", function (e) {
+                e.preventDefault();
+                $(this).parent().parent().remove();
+            })
+        })
+    </script>
+    @*same code without jquery*@
+    @*<script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            document.getElementById("btnPlus").addEventListener("click", function (e) {
+                e.preventDefault();
+
+                var qualificationContr = document.getElementById("qualificationContainer");
+
+                fetch("/Employees/AddNewQualification", {
+                    method: "GET"
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Request failed");
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        qualificationContr.insertAdjacentHTML("beforeend", data);
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    });
+            });
+
+        });
+    </script>*@
+
+    }

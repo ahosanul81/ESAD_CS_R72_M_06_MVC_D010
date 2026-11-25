@@ -20,7 +20,7 @@ namespace ESAD_CS_R72_M_06_MVC_D010.Models.ViewModels
         public bool IsActive { get; set; }
         [Required, Display(Name = "Salary"), Column(TypeName = "money")]
         public decimal Salary { get; set; }
-        public List<int> QualificationList { get; set; }
+        public List<int> QualificationList { get; set; } = new List<int>();
         
     }
 }
